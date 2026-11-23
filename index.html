@@ -1217,7 +1217,15 @@ function generate(seed,level){
   /* salles de téléporteurs : à partir de l'étage 3 (3 portails à partir de l'étage 6) */
   const teleRooms=[];
   if(level>=3){
-    for(let k=0,n=level>=6?3:2;k<n;k++){const T=addSide('tele',9,9,1,nChain-1);if(T)teleRooms.push(T);}
+    const usedP=[];
+    const addTele=()=>{
+      const idxs=[];for(let i=1;i<=nChain-1;i++)idxs.push(i);shuffle(idxs);
+      const far=i=>usedP.length?Math.min.apply(null,usedP.map(u=>Math.hypot(chain[i].cx-chain[u].cx,chain[i].cz-chain[u].cz))):0;
+      if(usedP.length)idxs.sort((p,q)=>far(q)-far(p));else idxs.sort((p,q)=>p-q);
+      for(const i of idxs){const B=growFrom(chain[i],9,9,'tele',[0,1,2,3]);if(B){usedP.push(i);return B;}}
+      return null;
+    };
+    for(let k=0,n=level>=6?3:2;k<n;k++){const T=addTele();if(T)teleRooms.push(T);}
     if(teleRooms.length===1){teleRooms[0].type='combat';teleRooms.length=0;}
   }
   for(let k=0,n=ri(1,2)+((level/2)|0);k<n;k++)addSide('combat',ri(9,13),ri(9,12),1,nChain-1);
