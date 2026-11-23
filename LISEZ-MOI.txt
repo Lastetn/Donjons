@@ -1,0 +1,15 @@
+CENDRES DE VALDRAK — dossier prêt pour GitHub Pages
+
+1. Crée un dépôt GitHub (ex. "valdrak") et dépose TOUT le contenu de ce dossier à la racine
+   (index.html, manifest.webmanifest, sw.js, .nojekyll, dossier icons/).
+2. Dépôt > Settings > Pages > "Deploy from a branch" > branche main, dossier / (root) > Save.
+3. Après une minute, le jeu est sur https://TON-PSEUDO.github.io/valdrak/
+4. Sur téléphone : ouvre le lien, menu du navigateur > "Installer l'application" /
+   "Ajouter à l'écran d'accueil". Le jeu se lance ensuite en plein écran, même hors ligne
+   (après une première ouverture avec internet : le jeu garde Three.js en cache).
+
+Mises à jour : après avoir remplacé index.html, change VERSION ('cdv-v1' -> 'cdv-v2') en haut de sw.js
+pour que les joueurs récupèrent la nouvelle version.
+
+Sauvegardes : stockées dans le navigateur de l'appareil (16 emplacements max, une par partie,
+mise à jour au début de chaque étage).
